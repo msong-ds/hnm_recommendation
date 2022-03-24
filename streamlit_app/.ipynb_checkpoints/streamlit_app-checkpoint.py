@@ -5,11 +5,20 @@ import plotly.express as px
 import numpy as np
 from streamlit_lottie import st_lottie
 import requests
-from pathlib import Path
-st.set_page_config(layout="centered")
+import io
 
+#=====================Setting======================#
+st.set_page_config(layout="centered")
+def load_npy_web(url):
+    """
+    only for npy file
+    """
+    response = requests.get(url)
+    response.raise_for_status()
+    return np.load(io.BytesIO(response.content))
 #=============head=============#
 path = "https://github.com/msong-ds/hnm_recommendation/raw/main/streamlit_app/"
+
 st.title('Clustering H&M Customers by Their Shopping Patterns 👕👖')
 st.write('A Web App by [Minseok Song](https://github.com/msong-ds)')
 
@@ -39,8 +48,8 @@ Now let's take a look at the clusters in detail.
 
 #=====================create graphs=====================
 #=========== scatter plot
-df_pca_samples = np.load(path + "df_pca_samples.npy")
-cluster_labels_samples = np.load(path + "cluster_labels_samples.npy")
+df_pca_samples = load_npy_web(path + "df_pca_samples.npy")
+cluster_labels_samples = load_npy_web(path + "cluster_labels_samples.npy")
 cluster_labels_samples = [str(i) for i in cluster_labels_samples]
 all_clusters = np.unique(cluster_labels_samples)
 
@@ -49,7 +58,7 @@ scatter_3D = px.scatter_3d(df_pca_samples, x= df_pca_samples[:,0], y= df_pca_sam
 scatter_3D.update_traces(marker_size = 3)
 
 #=========== histogram
-cluster_labels = np.load(path + "cluster_labels.npy")
+cluster_labels = load_npy_web(path + "cluster_labels.npy")
 counts = pd.Series(cluster_labels).value_counts().sort_values(ascending=False)
 counts = counts.rename('Number of Customers')
 bins = np.array(counts.index)
@@ -64,7 +73,7 @@ histogram.update_layout(xaxis = dict(tickmode = 'array',
                        )
 
 #=========== bar chart - average spending
-cluster_mean_spending = np.load(path + "cluster_mean_spending.npy") /2 # per year
+cluster_mean_spending = load_npy_web(path + "cluster_mean_spending.npy") /2 # per year
 mean_spending = np.array([cluster_mean_spending[n] for n in bins])
 
 # bins, same order of bins as previous histogram will be used for comparison
@@ -77,7 +86,7 @@ bar_mean_spending.update_layout(xaxis = dict(tickmode = 'array',
                  )
 
 #=========== bar chart - average orders placed
-cluster_mean_orders = np.load(path + "cluster_mean_orders.npy")
+cluster_mean_orders = load_npy_web(path + "cluster_mean_orders.npy")
 mean_orders = np.array([cluster_mean_orders[n] for n in bins]) / 2 # orders per year
 # same order of bins as previous histogram will be used for comparison
 bar_mean_orders = px.bar(x=bins, y=mean_orders, labels={'x':'Cluster Label', 'y':'Average Number of Orders Placed per Year'},color = px.colors.qualitative.Plotly[:9])
