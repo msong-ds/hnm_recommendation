@@ -21,13 +21,20 @@ def load_npy_web(url):
 
 path = "https://github.com/msong-ds/hnm_recommendation/raw/main/streamlit_app/"
 #=============head=============#
-# H&M logo
-response_logo = requests.get(path + "hnm_logo.png")
-img = Image.open(io.BytesIO(response_logo.content))
-st.image(img)
+#===========H&M logo
+col1, col2, col3 = st.columns(3)
 
+with col1:
+    st.write(' ')
 
+with col2:
+    response_logo = requests.get(path + "hnm_logo.png")
+    img = Image.open(io.BytesIO(response_logo.content))
+    st.image(img)
+with col3:
+    st.write(' ')
 
+#===========title
 st.title('Clustering H&M Customers by Their Shopping Patterns 👕👖')
 st.write('A Web App by [Minseok Song](https://github.com/msong-ds/hnm_recommendation)')
 
