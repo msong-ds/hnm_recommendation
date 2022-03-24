@@ -20,7 +20,7 @@ def load_npy_web(url):
 path = "https://github.com/msong-ds/hnm_recommendation/raw/main/streamlit_app/"
 
 st.title('Clustering H&M Customers by Their Shopping Patterns 👕👖')
-st.write('A Web App by [Minseok Song](https://github.com/msong-ds)')
+st.write('A Web App by [Minseok Song](https://github.com/msong-ds/hnm_recommendation)')
 
 st.subheader('Summary')
 
