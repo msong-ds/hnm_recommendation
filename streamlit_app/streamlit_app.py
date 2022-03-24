@@ -39,7 +39,7 @@ Now let's take a look at the clusters in detail.
 
 #=====================create graphs=====================
 #=========== scatter plot
-df_pca_samples = np.load("../streamlit_app/df_pca_samples.npy")
+df_pca_samples = np.load("df_pca_samples.npy")
 cluster_labels_samples = np.load("../streamlit_app/cluster_labels_samples.npy")
 cluster_labels_samples = [str(i) for i in cluster_labels_samples]
 all_clusters = np.unique(cluster_labels_samples)
