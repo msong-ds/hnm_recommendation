@@ -5,11 +5,11 @@ import plotly.express as px
 import numpy as np
 from streamlit_lottie import st_lottie
 import requests
-
+from pathlib import Path
 st.set_page_config(layout="centered")
 
 #=============head=============#
-
+st.write(Path(__file__).parents[0])
 st.title('Clustering H&M Customers by Their Shopping Patterns 👕👖')
 st.write('A Web App by [Minseok Song](https://github.com/msong-ds)')
 
