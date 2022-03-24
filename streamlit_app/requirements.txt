@@ -4,4 +4,3 @@ streamlit
 requests
 plotly
 streamlit-lottie
-pathlib
