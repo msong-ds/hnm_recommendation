@@ -6,8 +6,3 @@ data/submission_clu_20.csv
 data/submission_20_clu_3_days.csv
 data/submission_20_clu_30_days.csv
 data/customer_group_merged.parquet
-src/2_streamlit_app.ipynb
-src/1_model-ver3_revise.ipynb
-src/2_streamlit_app.ipynb
-src/1_model-ver3_revise.ipynb
-src/1_model-ver3_revise.ipynb
