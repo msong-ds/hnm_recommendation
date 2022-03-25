@@ -222,7 +222,7 @@ else:
 
 #=============Summary of the Clusters =============#
 st.subheader('Summary')
-summary_table = pd.DataFrame(cluster_to_name.values()).join(pd.DataFrame(np.vstack([(counts/np.sum(counts)).apply(lambda x: np.round(x*100,1)}"),
+summary_table = pd.DataFrame(cluster_to_name.values()).join(pd.DataFrame(np.vstack([(counts/np.sum(counts)).apply(lambda x: np.round(x*100,1)),
                                                                                     cluster_mean_spending,
                                                                                     cluster_mean_orders,
                                                                                     amount_spent_per_order
