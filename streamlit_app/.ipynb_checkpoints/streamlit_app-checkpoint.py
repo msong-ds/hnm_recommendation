@@ -113,7 +113,7 @@ bar_mean_spending.update_layout(xaxis = dict(tickmode = 'array',
                   showlegend=False
                  )
 #=========== bar chart - average orders placed
-cluster_mean_orders = load_npy_web(path + "cluster_mean_orders.npy")
+cluster_mean_orders = load_npy_web(path + "cluster_mean_orders.npy") /2
 mean_orders = pd.Series(cluster_mean_orders).sort_values(ascending=False)
 bins_orders = mean_orders.index
 
